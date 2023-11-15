@@ -18,7 +18,8 @@ class LoginPage(AppiumPage):
     def click_login_button(self):
         self.click_element(*self.login_button_locator)
 
-    def click_and_clear(self, element):
+    @staticmethod
+    def click_and_clear(element):
         element.click()
         element.clear()
 
@@ -41,7 +42,6 @@ class LoginPage(AppiumPage):
             raise ValueError("Password input element not found or not interactable")
 
     def is_login_successful(self):
-        # Додайте очікування на появу елемента, який є унікальним для головної сторінки після успішного входу
         try:
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.ID, 'com.ajaxsystems:id/coordinatorLayout'))
