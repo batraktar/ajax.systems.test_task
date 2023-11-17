@@ -49,3 +49,12 @@ class LoginPage(AppiumPage):
             return True
         except TimeoutException:
             return False
+
+    def is_error_message_displayed(self):
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.ID, 'com.ajaxsystems:id/snackbar_text'))
+            )
+            return True
+        except TimeoutException:
+            return False
