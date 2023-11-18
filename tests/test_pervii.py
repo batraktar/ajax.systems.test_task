@@ -1,15 +1,9 @@
 import pytest
+from appium.webdriver.common.mobileby import MobileBy
 # import logging
 from framework.login_page import LoginPage
-
-login_password_data = [
-    ("qa.ajax.app.automation@gmail.com", "qa_automation_password"),
-]
-
-negative_login_password_data = [
-    ("1@negative.com", "q"),
-    ('2@negative.com', 'w'),
-]
+from tests.SideBar.test_sidebar import SideBarTests
+from tests.parametrize_file  import login_password_data, negative_login_password_data
 
 
 @pytest.mark.parametrize(("login", "password"), login_password_data)
@@ -19,7 +13,10 @@ def test_user_login_poz(driver, login, password):
     login_page.enter_login(login)
     login_page.enter_password(password)
     login_page.click_login_button()
-
+    side_bar_tests = SideBarTests(driver)
+    side_bar_tests.click_menu_drawer()
+    side_bar_tests.test_sidebar_elements((MobileBy.ID, "com.ajaxsystems:id/settings"))
+    side_bar_tests.test_sidebar_elements((MobileBy.ID, "com.ajaxsystems:id/help"))
     assert login_page.is_login_successful(), f"Failed login with {login} and {password}"
     return
 
