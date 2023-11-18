@@ -29,8 +29,6 @@ class LoginPage(AppiumPage):
 
         if login_input:
             ActionChains(self.driver).click(login_input).send_keys(username).perform()
-        # else:
-        #     raise ValueError("Login input element not found or not interactable.")
 
     def enter_password(self, password):
         password_input = self.find_element(*self.password_input_locator)
@@ -38,8 +36,6 @@ class LoginPage(AppiumPage):
 
         if password_input:
             ActionChains(self.driver).click(password_input).send_keys(password).perform()
-        # else:
-        #     raise ValueError("Password input element not found or not interactable")
 
     def is_login_successful(self):
         try:

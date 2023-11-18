@@ -34,6 +34,7 @@ class SideBarTests:
 
     def test_sidebar_elements(self, locator):
         self.click_menu_drawer()
+        print('я виконуюсь')
 
         if self.is_element_present(locator):
             logging.info(f"Element with locator {locator} is present.")
